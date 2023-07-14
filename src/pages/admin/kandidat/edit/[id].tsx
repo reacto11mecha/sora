@@ -95,7 +95,6 @@ const EditPaslonWithID = () => {
     const formData = new FormData();
     const keys = Object.keys(data);
 
-    formData.append("timeZone", DateTime.local().zoneName);
     formData.append("id", router.query.id as string);
 
     for (const key of keys) {
@@ -189,9 +188,7 @@ const EditPaslonWithID = () => {
                         isDisabled={formState.isSubmitting}
                         count={1}
                         onChange={(e) =>
-                          field.onChange(
-                            (e.target as unknown as { files: File }).files
-                          )
+                          field.onChange(e.target.files as File)
                         }
                         onImageDropped={(img) => field.onChange(img)}
                       />

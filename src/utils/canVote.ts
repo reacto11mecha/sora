@@ -1,29 +1,44 @@
 import { DateTime } from "luxon";
-import settingsLib from "./settings";
+import { settings as settingsLib } from "./settings";
 
-export const canVoteNow = async (timeZone: string) => {
-  const settings = await settingsLib.read();
+const getTimePermission = () => {
+  const settings = settingsLib.getSettings();
 
-  const currentTime = DateTime.now().setZone(timeZone).toJSDate().getTime();
+  const currentTime = DateTime.now().toUTC().toJSDate().getTime();
+
   const timeConfig = {
     mulai: settings?.startTime
-      ? DateTime.fromISO(settings?.startTime as unknown as string)
-          .setZone(timeZone)
+      ? DateTime.fromJSDate(settings.startTime, {
+          zone: "utc",
+        })
           .toJSDate()
           .getTime()
       : false,
     selesai: settings?.endTime
-      ? DateTime.fromISO(settings?.endTime as unknown as string)
-          .setZone(timeZone)
+      ? DateTime.fromJSDate(settings.endTime, {
+          zone: "utc",
+        })
           .toJSDate()
           .getTime()
       : false,
   };
 
-  return (
-    timeConfig?.mulai <= currentTime &&
-    timeConfig?.selesai >= currentTime &&
-    settings?.canVote !== null &&
-    settings?.canVote !== false
-  );
+  return {
+    isPermittedByTime:
+      // Start
+      (timeConfig.mulai
+        ? (timeConfig.mulai as number) <= currentTime
+        : false) &&
+      // End
+      (timeConfig.selesai
+        ? (timeConfig.selesai as number) >= currentTime
+        : false),
+    settings,
+  };
+};
+
+export const canVoteNow = () => {
+  const { isPermittedByTime, settings } = getTimePermission();
+
+  return isPermittedByTime && settings.canVote;
 };

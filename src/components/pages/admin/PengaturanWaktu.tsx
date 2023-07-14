@@ -115,7 +115,7 @@ const PengaturanWaktu = () => {
               render={({ field }) => (
                 <DatePicker
                   placeholderText="Tetapkan waktu mulai"
-                  onChange={(date) => field.onChange(date)}
+                  onChange={(date) => field.onChange(date as Date)}
                   selectedDate={field.value as Date | null}
                   filterDate={(day) => day >= diniHari}
                   disabled={changeTime.isLoading || settingsQuery.isLoading}
@@ -139,7 +139,7 @@ const PengaturanWaktu = () => {
               render={({ field }) => (
                 <DatePicker
                   placeholderText="Tetapkan waktu selesai"
-                  onChange={(date) => field.onChange(date)}
+                  onChange={(date) => field.onChange(date as Date)}
                   selectedDate={field.value as Date | null}
                   filterDate={(day) => day >= diniHari}
                   disabled={changeTime.isLoading || settingsQuery.isLoading}

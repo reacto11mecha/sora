@@ -5,31 +5,16 @@ import {
   ServerPengaturanWaktuValidationSchema,
 } from "../../../schema/admin.settings.schema";
 
-import settings from "../../../utils/settings";
-import type { DataModel } from "../../../utils/settings";
+import { settings } from "../../../utils/settings";
 
 export const settingsRouter = router({
-  getSettings: publicProcedure.query(async () => {
-    const data = await settings.read();
-
-    return {
-      startTime: data?.startTime ? data.startTime : null,
-      endTime: data?.endTime ? data.endTime : null,
-      canVote: data?.canVote !== undefined ? data.canVote : false,
-      reloadAfterVote:
-        data?.reloadAfterVote !== undefined ? data.reloadAfterVote : false,
-    };
-  }),
+  getSettings: publicProcedure.query(() => settings.getSettings()),
 
   changeVotingBehaviour: protectedProcedure
     .input(PengaturanPerilakuValidationSchema)
     .mutation(async ({ input }) => {
-      const readedData = await settings.read();
-
-      await settings.write({
-        ...(readedData as unknown as DataModel),
-        ...input,
-      });
+      settings.updateSettings.canVote(input.canVote);
+      settings.updateSettings.reloadAfterVote(input.reloadAfterVote);
 
       return { message: "Pengaturan perilaku pemilihan berhasil diperbarui!" };
     }),
@@ -37,12 +22,8 @@ export const settingsRouter = router({
   changeVotingTime: protectedProcedure
     .input(ServerPengaturanWaktuValidationSchema)
     .mutation(async ({ input }) => {
-      const readedData = await settings.read();
-
-      await settings.write({
-        ...(readedData as unknown as DataModel),
-        ...input,
-      });
+      settings.updateSettings.startTime(input.startTime);
+      settings.updateSettings.endTime(input.endTime);
 
       return { message: "Pengaturan waktu pemilihan berhasil diperbarui!" };
     }),
