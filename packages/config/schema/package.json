@@ -14,7 +14,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-turbo": "^1.9.8",
     "eslint-plugin-react": "7.32.2",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "eslint": "^8.40.0",

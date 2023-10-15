@@ -20,7 +20,7 @@
     "amqplib": "^0.10.3",
     "bcrypt": "^5.1.0",
     "superjson": "1.13.1",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@sora/eslint-config": "^0.1.0",
