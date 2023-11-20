@@ -3325,7 +3325,7 @@ __metadata:
     "@t3-oss/env-nextjs": ^0.3.1
     eslint: ^8.40.0
     next: 13.4.7
-    next-auth: ^4.22.1
+    next-auth: ^4.24.5
     react: 18.2.0
     react-dom: 18.2.0
     typescript: ^5.2.2
@@ -3468,7 +3468,7 @@ __metadata:
     eslint-plugin-react: 7.32.2
     framer-motion: ^10.16.0
     next: 13.4.7
-    next-auth: ^4.22.1
+    next-auth: ^4.24.5
     react: 18.2.0
     react-dom: 18.2.0
     react-icons: ^4.8.0
@@ -3523,7 +3523,7 @@ __metadata:
     mime-types: ^2.1.35
     mv: ^2.1.1
     next: 13.4.7
-    next-auth: ^4.22.1
+    next-auth: ^4.24.5
     next-connect: ^1.0.0
     qrcode: ^1.5.3
     react: 18.2.0
@@ -9333,9 +9333,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:^4.22.1":
-  version: 4.22.1
-  resolution: "next-auth@npm:4.22.1"
+"next-auth@npm:^4.24.5":
+  version: 4.24.5
+  resolution: "next-auth@npm:4.24.5"
   dependencies:
     "@babel/runtime": ^7.20.13
     "@panva/hkdf": ^1.0.2
@@ -9347,14 +9347,14 @@ __metadata:
     preact-render-to-string: ^5.1.19
     uuid: ^8.3.2
   peerDependencies:
-    next: ^12.2.5 || ^13
+    next: ^12.2.5 || ^13 || ^14
     nodemailer: ^6.6.5
     react: ^17.0.2 || ^18
     react-dom: ^17.0.2 || ^18
   peerDependenciesMeta:
     nodemailer:
       optional: true
-  checksum: 42bae16b62bac4b3d215d991c7c964dfc071a84df32900a28d4cbc20d4b6a65689b3ba9f10633780a22ff0cbc420248d012614a5b0d82918f9bbb56f7f92f7c5
+  checksum: 7cc49385123690ccb908f4552b75012717c4e45205a9fdc7cf48cd730dbcc7823a3e33e2a2073ecf1edae5c1980123f68678fd4af9198ea21ab0decb630cc71e
   languageName: node
   linkType: hard
 
